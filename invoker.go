@@ -12,7 +12,7 @@ import (
 )
 
 // InvokeLambda actually invokes the lambda
-func (i *AWSLambdaInvoker) InvokeLambda(request interface{}) (response interface{}, err error) {
+func (i *AWSLambdaInvoker) InvokeLambda(request interface{}) (response map[string]interface{}, err error) {
 
 	baseCfg, cfgErr := i.AWSConfigProvider.GetBaseAWSConfig()
 	if cfgErr != nil {
@@ -33,7 +33,7 @@ func (i *AWSLambdaInvoker) InvokeLambda(request interface{}) (response interface
 
 	if marshalError != nil {
 		fmt.Println(marshalError)
-		return nil, marshalError
+		return nil, errors.New("There was an error in marshalling the payload for the invocation.Please check whether the object is properly formed")
 	}
 
 	lambdaParams.Payload = encodedPayload
@@ -44,6 +44,13 @@ func (i *AWSLambdaInvoker) InvokeLambda(request interface{}) (response interface
 		fmt.Println(err)
 		return nil, errors.New("A problem was encountered in invoking the lambda")
 	}
+
 	payloadString := string(lambdaHandler.Payload)
-	return payloadString, nil
+	var result map[string]interface{}
+	unmrshErr := json.Unmarshal([]byte(payloadString), &result)
+	if unmrshErr != nil {
+		fmt.Println(unmrshErr)
+		return nil, errors.New("There was an error in parsing the lamdba Response")
+	}
+	return result, nil
 }

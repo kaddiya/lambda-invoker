@@ -19,7 +19,7 @@ type AWSLambdaConfig struct {
 	AWSLamdaInvocationType string
 }
 
-// AWSLambdaInvoker is the struct that will implement the AWSLambdaInvoker interface in real world
+// AWSLambdaInvoker will the struct that will implement the AWSLambdaInvoker interface in real world
 type AWSLambdaInvoker struct {
 	Config            AWSLambdaConfig
 	AWSConfigProvider BaseAWSConfigProvider
