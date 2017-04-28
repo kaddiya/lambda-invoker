@@ -9,7 +9,7 @@ type EnvironmentVarsAWSConfigProvider struct{
 
 }
 
-// Make it implement the BaseAWSConfigProvider interface by supplying implementation of GetBaseAWSConfig() which will provide  // the credentials by sourcing it from somewhere like os.Getenv()
+// Make it implement the BaseAWSConfigProvider interface by supplying implementation of GetBaseAWSConfig() which will provide the credentials by sourcing it from somewhere like os.Getenv()
 func(a *EnvironmentVarsAWSConfigProvider)GetBaseAWSConfig()(BaseAWSConfig, error){
   return &BaseAWSConfig{
     AWSRegion: os.Getenv("GET_YOUR_REGION"),
