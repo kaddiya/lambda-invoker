@@ -4,12 +4,12 @@ A general utility package to invoke aws lambda from your Go code
 **Usage**  
 in the calling code
 ```
-//Declare a struct ActualAWSConfigProvider will provide the implementation for BaseAWSConfigProvider
+//Declare a struct ActualAWSConfigProvider which will provide the implementation for BaseAWSConfigProvider
 type EnvironmentVarsAWSConfigProvider struct{
 
 }
 
-// Make it implement the BaseAWSConfigProvider interface by supplying implementation of GetBaseAWSConfig() which will provide the //credentials by sourcing it from somewhere like os.Getenv()
+// Make it implement the BaseAWSConfigProvider interface by supplying implementation of GetBaseAWSConfig() which will provide  // the credentials by sourcing it from somewhere like os.Getenv()
 func(a *EnvironmentVarsAWSConfigProvider)GetBaseAWSConfig()(BaseAWSConfig, error){
   return &BaseAWSConfig{
     AWSRegion: os.Getenv("GET_YOUR_REGION"),
