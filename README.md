@@ -4,22 +4,22 @@ A general utility package to invoke aws lambda from your Go code
 **Usage**  
 in the calling code
 ```
-// ActualAWSConfigProvider will provide the implementation for BaseAWSConfigProvider
+//Declare a struct ActualAWSConfigProvider will provide the implementation for BaseAWSConfigProvider
 type EnvironmentVarsAWSConfigProvider struct{
 
 }
 
-// GetBaseAWSConfig will provide the credentials by sourcing it from somewhere like os.Getenv()
+// Make it implement the BaseAWSConfigProvider interface by supplying implementation of GetBaseAWSConfig() which will provide the //credentials by sourcing it from somewhere like os.Getenv()
 func(a *EnvironmentVarsAWSConfigProvider)GetBaseAWSConfig()(BaseAWSConfig, error){
   return &BaseAWSConfig{
-    AWSRegion:"us-west-2",
+    AWSRegion: os.Getenv("GET_YOUR_REGION"),
     AWSAccessKey:os.Getenv("ACCESS_KEY"),
     AWSSecretKey:os.Getenv("SECRET_KEY"),
   },
 }
 
 
-//create the instance of the invoker
+//create the instance of the AWSLambdaInvoker
 invoker := &AWSLambdaInvoker{
   LambdaConfig: &AWSLambdaConfig{
     AWSLambdaFunctionName:"SomeFunctionInLambda",
@@ -32,6 +32,7 @@ invoker := &AWSLambdaInvoker{
 type CustomLambdaRequest struct{
   //model the request
 }
+//instantiate the request
 req :=CustomLambdaRequest{}
 
 //invoke the method
