@@ -12,3 +12,17 @@ type LambdaResponse interface {
 type LambdaInvoker interface {
 	InvokeLambda(LambdaRequest) (LambdaResponse, error)
 }
+
+// BaseAWSConfig will hold the values that are generally required by all things for AWS
+type BaseAWSConfig struct {
+	AWSRegion    string
+	AWSAccessKey string
+	AWSSecretKey string
+}
+
+// AWSLambdaConfig will encapsulate the config required for invoking a lambda
+type AWSLambdaConfig struct {
+	AWSConfig              BaseAWSConfig
+	AWSLambdaFunctionName  string
+	AWSLamdaInvocationType string
+}
