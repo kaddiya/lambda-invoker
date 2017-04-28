@@ -1,4 +1,4 @@
-package models
+package lambdainvoker
 
 // LambdaRequest encapsulates the request to Lambda
 type LambdaRequest interface {
@@ -25,4 +25,8 @@ type AWSLambdaConfig struct {
 	AWSConfig              BaseAWSConfig
 	AWSLambdaFunctionName  string
 	AWSLamdaInvocationType string
+}
+
+type AWSLambdaInvoker struct {
+	Config AWSLambdaConfig
 }
