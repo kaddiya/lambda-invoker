@@ -12,7 +12,7 @@ import (
 )
 
 // InvokeLambda actually invokes the lambda
-func (i *AWSLambdaInvoker) InvokeLambda(request LambdaRequest) (response LambdaResponse, err error) {
+func (i *AWSLambdaInvoker) InvokeLambda(request interface{}) (response interface{}, err error) {
 
 	baseCfg, cfgErr := i.AWSConfigProvider.GetBaseAWSConfig()
 	if cfgErr != nil {
@@ -42,9 +42,8 @@ func (i *AWSLambdaInvoker) InvokeLambda(request LambdaRequest) (response LambdaR
 
 	if err != nil {
 		fmt.Println(err)
-		return nil, err
+		return nil, errors.New("A problem was encountered in invoking the lambda")
 	}
 	payloadString := string(lambdaHandler.Payload)
-	fmt.Println(payloadString)
-	return new(LambdaResponse), nil
+	return payloadString, nil
 }
