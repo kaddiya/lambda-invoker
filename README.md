@@ -43,6 +43,6 @@ res := invoker.InvokeLambda(req)
 ```
 
 
-**Support**
-1.Currently supports only `RequestResonse` invocation type.
+**Support**  
+1.Currently supports only `RequestResonse` invocation type.  
 2.Others coming soon.
