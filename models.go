@@ -14,14 +14,13 @@ type BaseAWSConfig struct {
 
 // AWSLambdaConfig will encapsulate the config required for invoking a lambda
 type AWSLambdaConfig struct {
-	AWSConfig              BaseAWSConfig
 	AWSLambdaFunctionName  string
 	AWSLamdaInvocationType string
 }
 
 // AWSLambdaInvoker will the struct that will implement the AWSLambdaInvoker interface in real world
 type AWSLambdaInvoker struct {
-	Config            AWSLambdaConfig
+	LambdaConfig      AWSLambdaConfig
 	AWSConfigProvider BaseAWSConfigProvider
 }
 

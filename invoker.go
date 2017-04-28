@@ -27,8 +27,8 @@ func (i *AWSLambdaInvoker) InvokeLambda(request interface{}) (response map[strin
 	})
 
 	lambdaParams := &lambda.InvokeInput{}
-	lambdaParams.FunctionName = aws.String(i.Config.AWSLambdaFunctionName)
-	lambdaParams.InvocationType = aws.String(i.Config.AWSLamdaInvocationType)
+	lambdaParams.FunctionName = aws.String(i.LambdaConfig.AWSLambdaFunctionName)
+	lambdaParams.InvocationType = aws.String(i.LambdaConfig.AWSLamdaInvocationType)
 	encodedPayload, marshalError := json.Marshal(request)
 
 	if marshalError != nil {
