@@ -33,7 +33,7 @@ type CustomLambdaRequest struct{
   //model the request
 }
 //instantiate the request
-req :=CustomLambdaRequest{}
+req := CustomLambdaRequest{}
 
 //invoke the method
 res := invoker.InvokeLambda(req)
